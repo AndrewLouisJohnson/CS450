@@ -8,7 +8,7 @@ output: html_document
 
 ## Libraries {#libraries}
 
-```{r, message = FALSE}
+```{r, message = FALSE, include=FALSE}
 
 library(data.table)
 library(dplyr)
@@ -21,7 +21,7 @@ theme_set(theme_bw())
 
 ```
 
-```{r}
+```{r, include=FALSE}
 
 # Data Section 1
 teams <- fread('./DataFiles/Teams.csv')
@@ -34,12 +34,13 @@ tour_detail <- fread('./DataFiles/NCAATourneyDetailedResults.csv')
 conferences <- fread('./DataFiles/Conferences.csv')
 team_conferences <- fread('./DataFiles/TeamConferences.csv')
 coaches <- fread('./DataFiles/TeamCoaches.csv')
+data18 <- fread('./DataFiles/2018RegularSeasonDetailedResults.csv')
 
 ```
 
 ## Data Overview
 
-```{r}
+```{r, include=FALSE}
 
 glimpse(teams)
 glimpse(seasons)
@@ -210,6 +211,8 @@ POS = 0.96 * (LFGA + LTO + 0.44 * LFTA - LOR)
 )]
 
 stats_all <- rbindlist(list(win_stats, los_stats))
+data_2018 <- data18 %>% 
+  filter(Season == 2018)
 
 ```
 
